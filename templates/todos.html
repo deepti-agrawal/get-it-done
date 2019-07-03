@@ -13,7 +13,23 @@
         {% else %}
         <ul>
             {% for task in tasks %}
-            <li>{{task}}</li>
+            <li>{{task.name}}
+                <form method="POST" action="/delete-task" style="display: inline-block;">
+                   <input type="hidden" name="task-id" value="{{task.id}}"/>
+                   <input type="submit" value="Done it!"/>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <hr/>
+        <h2>Completed Tasks</h2>
+        {% if completed_tasks|length == 0 %}
+        <p>No tasks yet..</p>
+        {% else %}
+        <ul>
+            {% for task in completed_tasks %}
+            <li>{{task.name}}</li>
             {% endfor %}
         </ul>
         {% endif %}
